@@ -37,4 +37,25 @@ RSpec.describe Client, type: :model do
       end
     end
   end
+
+  describe ".print" do
+    let!(:client) { Client.create(name: "jeff") }
+    let!(:wallet) { Wallet.create(currency: "USD", amount: 50.0, client_id: client.id) }
+
+    context "when have filter" do
+      it "should return one client" do
+        expect(Client.print("jeff") ).to eq({:name=>"jeff", :wallets=>{"USD"=>50.0}})
+      end
+    end
+
+    context "when dont have filter" do
+      let!(:client2) { Client.create(name: "j4") }
+      let!(:wallet2) { Wallet.create(currency: "BRL", amount: 150.0, client_id: client2.id) }
+
+      it "should return all clients" do
+        expect(Client.print(nil) ).to eq([{:name=>"jeff", :wallets=>{"USD"=>50.0}},
+                                         {:name=>"j4", :wallets=>{"BRL"=>150.0}}])
+      end
+    end
+  end
 end

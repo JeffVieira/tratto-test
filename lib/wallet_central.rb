@@ -13,6 +13,10 @@ class WalletCentral
   end
 
   def self.output(filter = nil)
-    #todo
+    begin
+      Client.print(filter).to_json
+    rescue Exception => e
+      puts e
+    end
   end
 end

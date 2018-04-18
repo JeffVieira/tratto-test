@@ -17,4 +17,16 @@ class Client < Sequel::Model
     wallet
   end
 
+  def self.print(filter)
+    if filter.nil?
+      Client.all.map do |client|
+        { name: client.name, wallets: client.wallets.map{|w| [w.currency, w.amount]}.to_h }
+      end
+    else
+      client = Client.find(name: filter)
+      raise Exception.new("No client #{filter} found") if client.nil?
+      { name: client.name, wallets: client.wallets.map{|w| [w.currency, w.amount]}.to_h }
+    end
+  end
+
 end
