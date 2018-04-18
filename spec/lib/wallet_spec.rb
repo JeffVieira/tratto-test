@@ -35,4 +35,31 @@ RSpec.describe Wallet, type: :model do
       end
     end
   end
+
+  describe ".exchange_amount" do
+    subject { Wallet.new }
+    it "should exchange USD to EUR" do
+      expect( subject.send :exchange_amount, 100, "USD", "EUR" ).to eq(80)
+    end
+
+    it "should exchange USD to BRL" do
+      expect( subject.send :exchange_amount, 100, "USD", "BRL" ).to eq(316)
+    end
+
+    it "should exchange EUR to USD" do
+      expect( subject.send :exchange_amount, 100, "EUR", "USD" ).to eq(125)
+    end
+
+    it "should exchange EUR to BRL" do
+      expect( subject.send :exchange_amount, 100, "EUR", "BRL" ).to eq(395)
+    end
+
+    it "should exchange BRL to EUR" do
+      expect( subject.send :exchange_amount, 100, "BRL", "EUR" ).to eq(25.32)
+    end
+
+    it "should exchange BRL to USD" do
+      expect( subject.send :exchange_amount, 100, "BRL", "USD" ).to eq(31.65)
+    end
+  end
 end

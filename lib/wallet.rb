@@ -11,4 +11,8 @@ class Wallet < Sequel::Model
     self.amount += credit_amount
     self.save
   end
+
+  private
+    def exchange_amount(amount, from_currency, to_currency)
+    end
 end
