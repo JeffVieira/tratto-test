@@ -1,5 +1,6 @@
 require_relative 'db'
 require_relative 'csv_parse'
+require 'json'
 
 CsvParse.new
 
