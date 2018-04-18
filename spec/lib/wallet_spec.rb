@@ -31,7 +31,7 @@ RSpec.describe Wallet, type: :model do
     context "when wallet doesnt have same currency" do
       it "should exchange and sum the value" do
         wallet.credit(50.0, "EUR")
-        expect(wallet.amount).to eq(150.0)
+        expect(wallet.amount).to eq(162.5)
       end
     end
   end
