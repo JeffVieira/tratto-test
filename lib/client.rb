@@ -8,8 +8,7 @@ class Client < Sequel::Model
   end
 
   def self.get_currency_wallet(client_name, currency, return_first = false)
-    client = Client.find(name: client_name)
-    raise Exception.new("No client #{client_name} found") if client.nil?
+    client = get_client(client_name)
 
     wallet = client.wallets.find{|w| w.currency == currency}
     raise Exception.new("No wallet whit currency #{currency} found for #{client_name}") if wallet.nil? && !return_first
@@ -23,10 +22,16 @@ class Client < Sequel::Model
         { name: client.name, wallets: client.wallets.map{|w| [w.currency, w.amount]}.to_h }
       end
     else
-      client = Client.find(name: filter)
-      raise Exception.new("No client #{filter} found") if client.nil?
+      client = get_client(filter)
       { name: client.name, wallets: client.wallets.map{|w| [w.currency, w.amount]}.to_h }
     end
   end
+
+  private
+    def self.get_client(name)
+      client = Client.find(name: name)
+      raise Exception.new("No client #{name} found") if client.nil?
+      client
+    end
 
 end

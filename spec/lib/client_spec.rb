@@ -58,4 +58,20 @@ RSpec.describe Client, type: :model do
       end
     end
   end
+
+  describe ".get_client" do
+    context "when user exist" do
+      let!(:client) { Client.create(name: "jeff") }
+
+      it "should return a user" do
+        expect(Client.get_client("jeff") ).to eq(client)
+      end
+    end
+
+    context "when user dont exist" do
+      it "should return Exception" do
+        expect { Client.get_client("jeff") }.to raise_error "No client jeff found"
+      end
+    end
+  end
 end
