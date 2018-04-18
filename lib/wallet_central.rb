@@ -26,5 +26,3 @@ class WalletCentral
     end
   end
 end
-
-binding.pry
