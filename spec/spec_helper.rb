@@ -13,9 +13,9 @@
 # The `.rspec` file also contains a few flags that are not defaults but that
 # users commonly want.
 #
+
+require 'db'
 require 'database_cleaner'
-require 'sequel'
-DB = Sequel.sqlite
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
