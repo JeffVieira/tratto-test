@@ -1,12 +1,18 @@
 # Tratto Programming Exercise
 
+```
+the following lib has a wallets.csv file in lib/resources/ with  contain a list of clients and his wallets.
+the core class WalletCentral have two methods to manipulate those client's wallet data.
+
+```
+
 ## Requirements
 
+```
 * Ruby version 2.5.0
+```
 
 ## How to use
-
-the following lib whas a core class with is WalletCentral, this class have two methods:
 
 ```
   ### WalletCentral.transfer("jon", "aray", 'USD', 100.0)
@@ -16,6 +22,12 @@ the following lib whas a core class with is WalletCentral, this class have two m
   * this method will print all the clients in json format
 
   ### WalletCentral.output("jon")
-  * this method will print the filtered clients in json format
+  * this method will print the filtered client in json format
+
+```
+## Running the tests
+
+```
+  $ rspec
 
 ```
